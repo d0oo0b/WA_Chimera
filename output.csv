@@ -1,0 +1,167 @@
+Pillar Name,Question Title,Choice Title,Trusted Advisor Checks
+Security,SEC 1 How do you securely operate your workload?,P0 Secure account root user and properties,MFA on Root Account 7DAFEmoDos
+Security,SEC 1 How do you securely operate your workload?,P0 Secure account root user and properties,IAM Password Policy Yw2K9puPzl
+Security,SEC 2 How do you manage identities for people and machines?,"P0 Use strong sign-in mechanisms - Enforce MFA for root account , power user accounts",MFA on Root Account 7DAFEmoDos
+Security,SEC 2 How do you manage identities for people and machines?,"P0 Use strong sign-in mechanisms - Enforce MFA for root account , power user accounts",Password policies for IAM users should have strong configurations
+Security,SEC 2 How do you manage identities for people and machines?,"P0 Use strong sign-in mechanisms - Enforce MFA for root account , power user accounts",Hardware MFA should be enabled for the root user
+Security,SEC 2 How do you manage identities for people and machines?,"P0 Use strong sign-in mechanisms - Enforce MFA for root account , power user accounts",MFA should be enabled for all IAM users that have a console password
+Security,SEC 2 How do you manage identities for people and machines?,P1 Use strong sign-in mechanisms - Enforce strong password policy,IAM Password Policy Yw2K9puPzl
+Security,SEC 2 How do you manage identities for people and machines?,P2 Use temporary credentials,CodeBuild project environment variables should not contain clear text credentials
+Security,SEC 2 How do you manage identities for people and machines?,P0 Store and use secrets securely - i.e. never Exposed Access Keys in public Git Repo,IAM Access Key Rotation DqdJqYeRm5
+Security,SEC 2 How do you manage identities for people and machines?,P0 Store and use secrets securely - i.e. never Exposed Access Keys in public Git Repo,Exposed Access Keys 12Fnkpl8Y5
+Security,SEC 2 How do you manage identities for people and machines?,"P1 Store and use secrets securely - i.e. store database, app secret etc in Secret Manager or equivalent.",IAM Access Key Rotation DqdJqYeRm5
+Security,SEC 2 How do you manage identities for people and machines?,"P1 Store and use secrets securely - i.e. store database, app secret etc in Secret Manager or equivalent.",Exposed Access Keys 12Fnkpl8Y5
+Security,SEC 2 How do you manage identities for people and machines?,P2 Rely on a centralized identity provider,IAM Use
+Security,SEC 2 How do you manage identities for people and machines?,P2 Rely on a centralized identity provider,CodeBuild GitHub or Bitbucket source repository URLs should use OAuth
+Security,SEC 2 How do you manage identities for people and machines?,P2 Rely on a centralized identity provider,IAM authentication should be configured for RDS clusters
+Security,SEC 2 How do you manage identities for people and machines?,P2 Rely on a centralized identity provider,IAM authentication should be configured for RDS instances
+Security,SEC 2 How do you manage identities for people and machines?,P0 Audit and rotate credentials periodically - i.e. IAM Access Key Rotation,IAM Access Key Rotation DqdJqYeRm5
+Security,SEC 2 How do you manage identities for people and machines?,P0 Audit and rotate credentials periodically - i.e. IAM Access Key Rotation,ACM certificates should be renewed after a specified time period
+Security,SEC 2 How do you manage identities for people and machines?,P0 Audit and rotate credentials periodically - i.e. IAM Access Key Rotation,API Gateway REST and WebSocket API execution logging should be enabled
+Security,SEC 2 How do you manage identities for people and machines?,P0 Audit and rotate credentials periodically - i.e. IAM Access Key Rotation,Secrets Manager secrets should have automatic rotation enabled
+Security,SEC 2 How do you manage identities for people and machines?,P0 Audit and rotate credentials periodically - i.e. IAM Access Key Rotation,Secrets Manager secrets should be rotated within a specified number of days
+Security,SEC 2 How do you manage identities for people and machines?,P1 Audit credentials periodically -  i.e. enables CloudTrail to track user activity and API usage,AWS CloudTrail Logging vjafUGJ9H0
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Grant least privilege access - i.e. No non-administrator users or roles have administrator privileges.,"RDS DB Instances should prohibit public access, determined by the PubliclyAccessible configuration Hs4Ma3G192"
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Grant least privilege access - i.e. No non-administrator users or roles have administrator privileges.,S3 permissions granted to other AWS accounts in bucket policies should be restricted Hs4Ma3G169
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Grant least privilege access - i.e. No non-administrator users or roles have administrator privileges.,Unused IAM user credentials should be removed Hs4Ma3G144
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Grant least privilege access - i.e. No non-administrator users or roles have administrator privileges.,IAM root user access key should not exist Hs4Ma3G140
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Grant least privilege access - i.e. No non-administrator users or roles have administrator privileges.,IAM users should not have IAM policies attached Hs4Ma3G138
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Grant least privilege access - i.e. No non-administrator users or roles have administrator privileges.,"IAM policies should not allow full ""*"" administrative privileges Hs4Ma3G137"
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Grant least privilege access - i.e. No non-administrator users or roles have administrator privileges.,IAM principals should not have IAM inline policies that allow decryption actions on all KMS keys Hs4Ma3G134
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Grant least privilege access - i.e. No non-administrator users or roles have administrator privileges.,IAM customer managed policies should not allow decryption actions on all KMS keys Hs4Ma3G133
+Security,SEC 3 How do you manage permissions for people and machines?,P2 Share resources securely within your organization,Amazon ECS task definitions should have secure networking modes and user definitions. Hs4Ma3G145
+Security,SEC 3 How do you manage permissions for people and machines?,P2 Share resources securely within your organization,CloudTrail log file validation should be enabled Hs4Ma3G109
+Security,SEC 3 How do you manage permissions for people and machines?,P2 Share resources securely within your organization,AWS CloudTrail Logging vjafUGJ9H0
+Security,SEC 3 How do you manage permissions for people and machines?,P2 Reduce permissions continuously,Remove unused Secrets Manager secrets Hs4Ma3G114
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Manage access based on life cycle,Unused Network Access Control Lists should be removed Hs4Ma3G209
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Manage access based on life cycle,IAM users' access keys should be rotated every 90 days or less Hs4Ma3G139
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Manage access based on life cycle,IAM Access Key Rotation DqdJqYeRm5
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Analyze public and cross account access,RDS snapshot should be private Hs4Ma3G194
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Analyze public and cross account access,S3 buckets should prohibit public write access Hs4Ma3G172
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Analyze public and cross account access,S3 Block Public Access setting should be enabled Hs4Ma3G170
+Security,SEC 3 How do you manage permissions for people and machines?,P1 Analyze public and cross account access,Amazon S3 Bucket Permissions Pfx0RwqBli
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,CloudFront distributions should have logging enabled
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,Amazon Elasticsearch Service domains should have audit logging enabled
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,Database logging should be enabled
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,Enhanced monitoring should be configured for RDS DB instances
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,AWS WAF Classic Global Web ACL logging should be enabled
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,Application and Classic Load Balancers logging should be enabled
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,Amazon Elasticsearch Service domain error logging to CloudWatch Logs should be enabled
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,An RDS event notifications subscription should be configured for critical cluster events
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,An RDS event notifications subscription should be configured for critical database security group events
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,An RDS event notifications subscription should be configured for critical database instance events
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,An RDS event notifications subscription should be configured for critical database parameter group events
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,Elastic Beanstalk environments should have enhanced health reporting enabled
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,API Gateway REST API stages should have AWS X-Ray tracing enabled
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,API Gateway REST and WebSocket API execution logging should be enabled
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,CloudTrail trails should be integrated with Amazon CloudWatch Logs
+Security,SEC 4 How do you detect and investigate security events?,P1 Configure service and application logging,Amazon Redshift clusters should have audit logging enabled
+Security,SEC 4 How do you detect and investigate security events?,"P1 Analyze logs, findings, and metrics centrally",GuardDuty should be enabled
+Security,SEC 5 How do you protect your network resources?,P1 Create network layers,The VPC default security group should not allow inbound and outbound traffic Hs4Ma3G118
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,VPC flow logging should be enabled in all VPCs
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,Amazon Elasticsearch Service domains should be in a VPC
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,ECS services should not have public IP addresses assigned to them automatically Hs4Ma3G146
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,Security Groups - Unrestricted Access 1iG5NDGVre
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,Security Groups - Specific Ports Unrestricted HCP4007jGY
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,Amazon RDS Security Group Access Risk
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,ELB Security Groups xSqX82fQu
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,Amazon RDS Security Group Access Risk nNauJisYIT
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,Classic Load Balancers with HTTPS/SSL listeners should use a predefined security policy that has strong configuration Hs4Ma3G205
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,CloudFront distributions should have WAF enabled Hs4Ma3G201
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,IAM customer managed policies that you create should not allow wildcard actions for services Hs4Ma3G185
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,Security groups should only allow unrestricted incoming traffic for authorized ports Hs4Ma3G178
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,RDS instances should be deployed in a VPC Hs4Ma3G165
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,Lambda function policies should prohibit public access Hs4Ma3G131
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,API Gateway should be associated with a WAF Web ACL Hs4Ma3G125
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,EC2 instances should not have a public IPv4 address Hs4Ma3G123
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,VPC flow logging should be enabled in all VPCs Hs4Ma3G122
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,Secrets Manager secrets should be rotated within a specified number of days Hs4Ma3G112
+Security,SEC 5 How do you protect your network resources?,P0 Control traffic at all layers - restrict public subnet access.,Redshift clusters should use enhanced VPC routing Hs4Ma3G104
+Security,SEC 5 How do you protect your network resources?,P1 Control traffic at all layers - restrict private subnet access.,Security Groups - Specific Ports Unrestricted HCP4007jGY
+Security,SEC 6 How do you protect your compute resources?,P2 Perform vulnerability management,Amazon EC2 instances with Microsoft SQL Server end of support Qsdfp3A4L3
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,Security Groups - Unrestricted Access 1iG5NDGVre
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,Security Groups - Specific Ports Unrestricted HCP4007jGY
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,Amazon RDS Security Group Access Risk
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,ELB Security Groups
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,EC2 instances should not use multiple ENIs Hs4Ma3G208
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,Security groups should not allow unrestricted access to ports with high risk Hs4Ma3G204
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,Application load balancer should be configured to drop http headers Hs4Ma3G183
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,Database Migration Service replication instances should not be public Hs4Ma3G132
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,Lambda functions should use supported runtimes Hs4Ma3G130
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,AWS Lambda Functions Using Deprecated Runtimes L4dfs2Q4C5
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,Amazon Redshift clusters should prohibit public access Hs4Ma3G103
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,Amazon Elastic MapReduce cluster master nodes should not have public IP addresses Hs4Ma3G101
+Security,SEC 6 How do you protect your compute resources?,P1 Reduce attack surface,Amazon SageMaker notebook instances should not have direct internet access Hs4Ma3G100
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce encryption at rest according to the organization encryption requirement,API Gateway REST API cache data should be encrypted at rest Hs4Ma3G202
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce encryption at rest according to the organization encryption requirement,Amazon Elasticsearch Service domains should have encryption at-rest enabled Hs4Ma3G197
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce encryption at rest according to the organization encryption requirement,RDS DB instances should have encryption at-rest enabled Hs4Ma3G193
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce encryption at rest according to the organization encryption requirement,RDS cluster snapshots and database snapshots should be encrypted at rest Hs4Ma3G191
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce encryption at rest according to the organization encryption requirement,S3 buckets should have server-side encryption enabled Hs4Ma3G167
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce encryption at rest according to the organization encryption requirement,Elastic File System should be configured to encrypt file data at-rest using AWS KMS Hs4Ma3G159
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce encryption at rest according to the organization encryption requirement,Amazon SQS queues should be encrypted at rest Hs4Ma3G136
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce encryption at rest according to the organization encryption requirement,DynamoDB Accelerator (DAX) clusters should be encrypted at rest Hs4Ma3G126
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce encryption at rest according to the organization encryption requirement,Attached EBS volumes should be encrypted at-rest Hs4Ma3G117
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce encryption at rest according to the organization encryption requirement,CloudTrail should have encryption at-rest enabled Hs4Ma3G110
+Security,SEC 8 How do you protect your data at rest?,P1 Automate data at rest protection,CloudFront distributions should have a default root object configured Hs4Ma3G200
+Security,SEC 8 How do you protect your data at rest?,P1 Automate data at rest protection,RDS DB instances should have deletion protection enabled Hs4Ma3G198
+Security,SEC 8 How do you protect your data at rest?,P1 Automate data at rest protection,RDS clusters should have deletion protection enabled Hs4Ma3G190
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce access control,Amazon RDS Public Snapshots rSs93HQwa1
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce access control,Amazon EBS Public Snapshots ePs02jT06w
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce access control,Amazon S3 Bucket Permissions Pfx0RwqBli
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce access control,SSM documents should not be public Hs4Ma3G158
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce access control,"EBS snapshots should not be public, determined by the ability to be restorable by anyone Hs4Ma3G116"
+Security,SEC 8 How do you protect your data at rest?,P1 Enforce access control,EC2 instances should use Instance Metadata Service Version 2 (IMDSv2) Hs4Ma3G124
+Security,SEC 9 How do you protect your data in transit?,P1 Implement secure key and certificate management,ELB Listener Security a2sEc6ILx
+Security,SEC 9 How do you protect your data in transit?,P1 Implement secure key and certificate management,CloudFront SSL Certificate on the Origin Server N430c450f2
+Security,SEC 9 How do you protect your data in transit?,P1 Enforce encryption in transit according to the organization encryption requirement,API Gateway REST API stages should be configured to use SSL certificates for backend authentication
+Security,SEC 9 How do you protect your data in transit?,P1 Enforce encryption in transit according to the organization encryption requirement,Connections to Amazon Elasticsearch Service domains should be encrypted using TLS 1.2 Hs4Ma3G187
+Security,SEC 9 How do you protect your data in transit?,P1 Enforce encryption in transit according to the organization encryption requirement,Classic Load Balancer listeners should be configured with HTTPS or TLS termination Hs4Ma3G182
+Security,SEC 9 How do you protect your data in transit?,P1 Enforce encryption in transit according to the organization encryption requirement,Classic Load Balancers with SSL/HTTPS listeners should use a certificate provided by AWS Certificate Manager Hs4Ma3G181
+Security,SEC 9 How do you protect your data in transit?,P1 Enforce encryption in transit according to the organization encryption requirement,S3 buckets should require requests to use Secure Socket Layer Hs4Ma3G168
+Security,SEC 9 How do you protect your data in transit?,P1 Enforce encryption in transit according to the organization encryption requirement,Elasticsearch domains should encrypt data sent between nodes Hs4Ma3G150
+Security,SEC 9 How do you protect your data in transit?,P1 Enforce encryption in transit according to the organization encryption requirement,CloudFront distributions should require encryption in transit Hs4Ma3G107
+Security,SEC 9 How do you protect your data in transit?,P1 Enforce encryption in transit according to the organization encryption requirement,Connections to Amazon Redshift clusters should be encrypted in transit Hs4Ma3G102
+Security,SEC 9 How do you protect your data in transit?,P1 Enforce encryption in transit according to the organization encryption requirement,ELB Listener Security a2sEc6ILx
+Performance,PERF 2 How do you select and use compute resources in your workload?,P1 Configure and right-size compute resources,Large Number of EC2 Security Group Rules Applied to an Instance
+Performance,"PERF 3 How do you store, manage, and access data in your workload?",P1 Evaluate available configuration options for data store,Overutilized Amazon EBS Magnetic Volumes
+Performance,"PERF 3 How do you store, manage, and access data in your workload?",P1 Evaluate available configuration options for data store,Amazon EBS Provisioned IOPS (SSD) Volume Attachment Configuration
+Performance,"PERF 3 How do you store, manage, and access data in your workload?",P1 Evaluate available configuration options for data store,Amazon EC2 to EBS Throughput Optimization
+Performance,"PERF 3 How do you store, manage, and access data in your workload?",P1 Evaluate available configuration options for data store,Amazon EFS Throughput Mode Optimization
+Performance,PERF 4 How do you select and configure networking resources in your workload?,P1 Understand how networking impacts performance,Amazon Route 53 Alias Resource Record Sets
+Reliability,REL 1 How do you manage service quotas and constraints?,P1 Monitor and manage quotas,"Service limits checks flagged as Yellow (80%), Red (100%)"
+Reliability,REL 1 How do you manage service quotas and constraints?,P1 Ensure that a sufficient gap exists between the current quotas and the maximum usage to accommodate failover,"Service limits checks flagged as Yellow (80%), Red (100%)"
+Reliability,REL 2 How do you plan your network topology?,"P0 Provision redundant connectivity between private networks in the cloud ,  on-premises , cloud to cloud environments",VPN Tunnel Redundancy S45wrEXrLz
+Reliability,REL 2 How do you plan your network topology?,"P0 Provision redundant connectivity between private networks in the cloud ,  on-premises , cloud to cloud environments",AWS Direct Connect Location Redundancy 8M012Ph3U5
+Reliability,REL 2 How do you plan your network topology?,"P0 Provision redundant connectivity between private networks in the cloud ,  on-premises , cloud to cloud environments",AWS Direct Connect Virtual Interface Redundancy 4g3Nt5M1Th
+Reliability,REL 2 How do you plan your network topology?,"P0 Provision redundant connectivity between private networks in the cloud ,  on-premises , cloud to cloud environments",AWS Direct Connect Connection Redundancy 0t121N1Ty3
+Reliability,REL 7 How do you design your workload to adapt to changes in demand?,P1 Use automation when obtaining or scaling resources,Auto Scaling Group Resources 8CNsSllI5v
+Reliability,REL 7 How do you design your workload to adapt to changes in demand?,P1 Obtain resources upon detection of impairment to a workload,Auto Scaling Group Health Check CLOG40CDO8
+Reliability,REL 9 How do you back up data?,P0 Perform data backup automatically,Amazon RDS Backups opQPADkZvH
+Reliability,REL 9 How do you back up data?,P0 Perform data backup automatically,Amazon S3 Bucket Versioning R365s2Qddf
+Reliability,REL 9 How do you back up data?,P0 Perform data backup automatically,Amazon EBS Snapshots H7IgTzjT
+Reliability,REL 9 How do you back up data?,P1 Perform periodic recovery of the data to verify backup integrity and processes,Amazon RDS Backups
+Reliability,REL 10 How do you use fault isolation to protect your workload?,P1 Deploy the workload to multiple locations,ELB Cross-Zone Load Balancing xdeXZKIUy
+Reliability,REL 10 How do you use fault isolation to protect your workload?,P1 Deploy the workload to multiple locations,Amazon EC2 Availability Zone Balance wuy7G1zxql
+Reliability,REL 10 How do you use fault isolation to protect your workload?,P1 Deploy the workload to multiple locations,Amazon RDS Multi-AZ f2iK5R6Dep VPN Tunnel Redundancy S45wrEXrLz
+Reliability,REL 10 How do you use fault isolation to protect your workload?,P1 Deploy the workload to multiple locations,AWS Lambda VPC-enabled Functions without Multi-AZ Redundancy L4dfs2Q4C6
+Reliability,REL 11 How do you design your workload to withstand component failures?,P1 Monitor all components of the workload to detect failures,Amazon Route 53 Deleted Health Checks
+Reliability,REL 11 How do you design your workload to withstand component failures?,P1 Monitor all components of the workload to detect failures,Amazon S3 Bucket Logging
+Reliability,REL 11 How do you design your workload to withstand component failures?,P2 Fail over to healthy resources,Amazon Route 53 Failover Resource Record Sets b73EEdD790
+Reliability,REL 11 How do you design your workload to withstand component failures?,P2 Fail over to healthy resources,Amazon Comprehend Endpoint Access Risk Cm24dfsM13
+Reliability,REL 11 How do you design your workload to withstand component failures?,P2 Fail over to healthy resources,Amazon Route 53 High TTL Resource Record Sets C056F80cR3
+Reliability,REL 11 How do you design your workload to withstand component failures?,P2 Fail over to healthy resources,Amazon Route 53 Deleted Health Checks Cb877eB72b
+Cost optimization,COST 0 How do you utilize the following optimizatation tactics?,"P2 Adopts different compute purchase option like Reserve Instance, Saving Plan, Spot, if applicable",Savings Plan vZ2c2W1srf
+Cost optimization,COST 0 How do you utilize the following optimizatation tactics?,P2 Adopts different managed service purchase option like Reserve Instance if applicable,Amazon ElastiCache Reserved Node Optimization h3L1otH3re
+Cost optimization,COST 0 How do you utilize the following optimizatation tactics?,P2 Adopts different managed service purchase option like Reserve Instance if applicable,Amazon OpenSearch Service Reserved Instance Optimization 7ujm6yhn5t
+Cost optimization,COST 0 How do you utilize the following optimizatation tactics?,P2 Adopts different managed service purchase option like Reserve Instance if applicable,Amazon Redshift Reserved Node Optimization 1qw23er45t
+Cost optimization,COST 4 How do you decommission resources?,P1 Track resources over their life time,Amazon RDS Idle DB Instances Ti39halfu8
+Cost optimization,COST 4 How do you decommission resources?,P1 Track resources over their life time,Low Utilization Amazon EC2 Instances Qch7DwouX1
+Cost optimization,COST 4 How do you decommission resources?,P1 Track resources over their life time,Underutilized Amazon EBS Volumes DAvU99Dc4C
+Cost optimization,COST 4 How do you decommission resources?,P1 Track resources over their life time,Idle Load Balancers hjLMh88uM8
+Cost optimization,COST 4 How do you decommission resources?,P1 Track resources over their life time,Unassociated Elastic IP Addresses Z4AUBRNSmz
+Cost optimization,COST 4 How do you decommission resources?,P1 Track resources over their life time,Underutilized Amazon Redshift Clusters G31sQ1E9U
+Cost optimization,COST 4 How do you decommission resources?,P1 Track resources over their life time,AWS Lambda Functions with High Error Rates L4dfs2Q3C2
+Cost optimization,COST 4 How do you decommission resources?,P1 Track resources over their life time,AWS Lambda Functions with Excessive Timeouts L4dfs2Q3C3
+Cost optimization,COST 4 How do you decommission resources?,P1 Track resources over their life time,Amazon Comprehend Underutilized Endpoints Cm24dfsM12
+Cost optimization,COST 4 How do you decommission resources?,P1 Track resources over their life time,Amazon EC2 instances over-provisioned for Microsoft SQL Server Qsdfp3A4L1
+Cost optimization,COST 4 How do you decommission resources?,P1 Track resources over their life time,Amazon EC2 instances consolidation for Microsoft SQL Server Qsdfp3A4L2

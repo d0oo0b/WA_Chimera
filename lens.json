@@ -1,0 +1,1369 @@
+{
+    "schemaVersion": "2021-11-01",
+    "name": "GCR Key Workload",
+    "description": "GCR Key Workload",
+    "pillars": [
+        {
+            "id": "pillar_id_1",
+            "name": "Security",
+            "questions": [
+                {
+                    "id": "pillar_1_q01",
+                    "title": "SEC 1 How do you securely operate your workload?",
+                    "description": "To operate your workload securely, you must apply overarching best practices to every area of security. Take requirements and processes that you have defined in operational excellence at an organizational and workload level, and apply them to all areas. Staying up to date with recommendations from AWS, industry sources, and threat intelligence helps you evolve your threat model and control objectives. Automating security processes, testing, and validation allow you to scale your security operations.",
+                    "choices": [
+                        {
+                            "id": "pillar_1_q01choice1",
+                            "title": "P2 Separate workloads using accounts",
+                            "helpfulResource": {
+                                "displayText": "Establish common guardrails and isolation between environments (such as production, development, and test) and workloads through a multi-account strategy. Account-level separation is strongly recommended, as it provides a strong isolation boundary for security, billing, and access."
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q01choice2",
+                            "title": "P0 Secure account root user and properties",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nMFA on Root Account 7DAFEmoDos\n\nIAM Password Policy Yw2K9puPzl\n\nDetails:\nThe root user is the most privileged user in an AWS account, with full administrative access to all resources within the account, and in some cases cannot be constrained by security policies. Disabling programmatic access to the root user, establishing appropriate controls for the root user, and avoiding routine use of the root user helps reduce the risk of inadvertent exposure of the root credentials and subsequent compromise of the cloud environment.\n\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "(!pillar_1_q01choice2)",
+                            "risk": "HIGH_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "NO_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_1_q02",
+                    "title": "SEC 2 How do you manage identities for people and machines?",
+                    "description": "There are two types of identities you need to manage when approaching operating secure AWS workloads. Understanding the type of identity you need to manage and grant access helps you verify the right identities have access to the right resources under the right conditions.  Human Identities: Your administrators, developers, operators, and end users require an identity to access your AWS environments and applications. These are members of your organization, or external users with whom you collaborate, and who interact with your AWS resources via a web browser, client application, or interactive command line tools.  Machine Identities: Your service applications, operational tools, and workloads require an identity to make requests to AWS services, for example, to read data. These identities include machines running in your AWS environment such as Amazon EC2 instances or AWS Lambda functions. You may also manage machine  identities for external parties who need access. Additionally, you may also have machines outside of AWS that need access to your AWS environment.",
+                    "choices": [
+                        {
+                            "id": "pillar_1_q02choice1",
+                            "title": "P0 Use strong sign-in mechanisms - Enforce MFA for root account , power user accounts",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nMFA on Root Account 7DAFEmoDos\n\nPassword policies for IAM users should have strong configurations\n\nHardware MFA should be enabled for the root user\n\nMFA should be enabled for all IAM users that have a console password\n\nDetails:\nSign-ins (authentication using sign-in credentials) can present risks when not using mechanisms like multi-factor authentication (MFA), especially in situations where sign-in credentials have been inadvertently disclosed or are easily guessed. Use strong sign-in mechanisms to reduce these risks by requiring MFA. We also recommend requiring strong password policies.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q02choice2",
+                            "title": "P1 Use strong sign-in mechanisms - Enforce strong password policy",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nIAM Password Policy Yw2K9puPzl\n\nDetails:\nWe recommend enforcing strong password policies for IAM users.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q02choice3",
+                            "title": "P2 Use temporary credentials",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nCodeBuild project environment variables should not contain clear text credentials\n\nDetails:\nWhen doing any type of authentication, it's best to use temporary credentials instead of long-term credentials to reduce or eliminate risks, such as credentials being inadvertently disclosed, shared, or stolen.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q02choice4",
+                            "title": "P0 Store and use secrets securely - i.e. never Exposed Access Keys in public Git Repo",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nIAM Access Key Rotation DqdJqYeRm5\n\nExposed Access Keys 12Fnkpl8Y5\n\nDetails:\nA workload requires an automated capability to prove its identity to databases, resources, and third-party services. This is accomplished using secret access credentials, such as API access keys, passwords, and OAuth tokens. Using a purpose-built service to store, manage, and rotate these credentials helps reduce the likelihood that those credentials become compromised. Never Exposed Access Keys to public like Git Repo.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q02choice5",
+                            "title": "P1 Store and use secrets securely - i.e. store database, app secret etc in Secret Manager or equivalent.",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nIAM Access Key Rotation DqdJqYeRm5\n\nExposed Access Keys 12Fnkpl8Y5\n\nDetails:\nA workload requires an automated capability to prove its identity to databases, resources, and third-party services. This is accomplished using secret access credentials, such as API access keys, passwords, and OAuth tokens. Using a purpose-built service to store, manage, and rotate these credentials helps reduce the likelihood that those credentials become compromised. Never Exposed Access Keys to public like Git Repo."
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q02choice6",
+                            "title": "P2 Rely on a centralized identity provider",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nIAM Use\n\nCodeBuild GitHub or Bitbucket source repository URLs should use OAuth\n\nIAM authentication should be configured for RDS clusters\n\nIAM authentication should be configured for RDS instances\n\nDetails:\nFor workforce identities (employees and contractors), rely on an identity provider that allows you to manage identities in a centralized place. This makes it easier to manage access across multiple applications and systems, because you are creating, assigning, managing, revoking, and auditing access from a single location.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q02choice7",
+                            "title": "P0 Audit and rotate credentials periodically - i.e. IAM Access Key Rotation",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nIAM Access Key Rotation DqdJqYeRm5\n\nACM certificates should be renewed after a specified time period\n\nAPI Gateway REST and WebSocket API execution logging should be enabled\n\nSecrets Manager secrets should have automatic rotation enabled\n\nSecrets Manager secrets should be rotated within a specified number of days\n\nDetails:\nAudit and rotate credentials periodically to limit how long the credentials can be used to access your resources. Long-term credentials create many risks, and these risks can be reduced by rotating long-term credentials regularly.\n\nWe recommend the access key is active and has been rotated in the last 90 days.\n\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q02choice8",
+                            "title": "P1 Audit credentials periodically -  i.e. enables CloudTrail to track user activity and API usage",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAWS CloudTrail Logging vjafUGJ9H0\n\nDetails:\nTrusted Advisor Checks:\n\nAWS CloudTrail Logging vjafUGJ9H0\n\nAudit user activity and API usage through enables CloudTrail."
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_1_q02choice1 && pillar_1_q02choice2 &&  pillar_1_q02choice4 && pillar_1_q02choice5  && pillar_1_q02choice7 && pillar_1_q02choice8 ",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "(!pillar_1_q02choice1) || (!pillar_1_q02choice4) || (!pillar_1_q02choice7)",
+                            "risk": "HIGH_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_1_q03",
+                    "title": "SEC 3 How do you manage permissions for people and machines?",
+                    "description": "Manage permissions to control access to people and machine identities that require access to AWS and your workload. Permissions control who can access what, and under what conditions.",
+                    "choices": [
+                        {
+                            "id": "pillar_1_q03choice1",
+                            "title": "P2 Define access requirements",
+                            "helpfulResource": {
+                                "displayText": "Each component or resource of your workload needs to be accessed by administrators, end users, or other components. Have a clear definition of who or what should have access to each component, choose the appropriate identity type and method of authentication and authorization."
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q03choice2",
+                            "title": "P1 Grant least privilege access - i.e. No non-administrator users or roles have administrator privileges.",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nRDS DB Instances should prohibit public access, determined by the PubliclyAccessible configuration Hs4Ma3G192\n\nS3 permissions granted to other AWS accounts in bucket policies should be restricted Hs4Ma3G169 \n\nUnused IAM user credentials should be removed Hs4Ma3G144\n\nIAM root user access key should not exist Hs4Ma3G140\n\nIAM users should not have IAM policies attached Hs4Ma3G138\n\nIAM policies should not allow full \"*\" administrative privileges Hs4Ma3G137\n\nIAM principals should not have IAM inline policies that allow decryption actions on all KMS keys Hs4Ma3G134\n\nIAM customer managed policies should not allow decryption actions on all KMS keys Hs4Ma3G133\n\nDetails:\nIt's a best practice to grant only the access that identities require to perform specific actions on specific resources under specific conditions. Use group and identity attributes to dynamically set permissions at scale, rather than defining permissions for individual users. For example, you can allow a group of developers access to manage only resources for their project. This way, if a developer leaves the project, the developer's access is automatically revoked without changing the underlying access policies.\n\nNo non-administrator users or roles have administrator privileges."
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q03choice3",
+                            "title": "P2 Share resources securely within your organization",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAmazon ECS task definitions should have secure networking modes and user definitions. Hs4Ma3G145 \n\nCloudTrail log file validation should be enabled Hs4Ma3G109\n\nAWS CloudTrail Logging vjafUGJ9H0\n\nDetails:\nAs the number of workloads grows, you might need to share access to resources in those workloads or provision the resources multiple times across multiple accounts. You might have constructs to compartmentalize your environment, such as having development, testing, and production environments. However, having separation constructs does not limit you from being able to share securely. By sharing components that overlap, you can reduce operational overhead and allow for a consistent experience without guessing what you might have missed while creating the same resource multiple times.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q03choice4",
+                            "title": "P2 Reduce permissions continuously",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nRemove unused Secrets Manager secrets Hs4Ma3G114\n\nDetails:\nAs your teams determine what access is required, remove unneeded permissions and establish review processes to achieve least privilege permissions. Continually monitor and remove unused identities and permissions for both human and machine access.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q03choice5",
+                            "title": "P1 Manage access based on life cycle",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nUnused Network Access Control Lists should be removed Hs4Ma3G209\n\nIAM users' access keys should be rotated every 90 days or less Hs4Ma3G139\n\nIAM Access Key Rotation DqdJqYeRm5\n\nDetails:\nIntegrate access controls with operator and application lifecycle and your centralized federation provider. For example, remove a user's access when they leave the organization or change roles.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q03choice6",
+                            "title": "P1 Analyze public and cross account access",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nRDS snapshot should be private Hs4Ma3G194\n\nS3 buckets should prohibit public write access Hs4Ma3G172\n\nS3 Block Public Access setting should be enabled Hs4Ma3G170\n\nAmazon S3 Bucket Permissions Pfx0RwqBli\n\nDetails:\nContinually monitor findings that highlight public and cross-account access. Reduce public access and cross-account access to only the specific resources that require this access.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "S3 buckets should prohibit public write access Hs4Ma3G172\n\nS3 Block Public Access setting should be enabled Hs4Ma3G170\n\nAmazon S3 Bucket Permissions Pfx0RwqBli\n\n"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": " pillar_1_q03choice2 && pillar_1_q03choice5 && pillar_1_q03choice6 ",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_1_q04",
+                    "title": "SEC 4 How do you detect and investigate security events?",
+                    "description": "Capture and analyze events from logs and metrics to gain visibility. Take action on security events and potential threats to help secure your workload.",
+                    "choices": [
+                        {
+                            "id": "pillar_1_q04choice1",
+                            "title": "P1 Configure service and application logging",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nCloudFront distributions should have logging enabled\n\nAmazon Elasticsearch Service domains should have audit logging enabled\n\nDatabase logging should be enabled\n\nEnhanced monitoring should be configured for RDS DB instances\n\nAWS WAF Classic Global Web ACL logging should be enabled\n\nApplication and Classic Load Balancers logging should be enabled\n\nAmazon Elasticsearch Service domain error logging to CloudWatch Logs should be enabled\n\nAn RDS event notifications subscription should be configured for critical cluster events\n\nAn RDS event notifications subscription should be configured for critical database security group events\n\nAn RDS event notifications subscription should be configured for critical database instance events\n\nAn RDS event notifications subscription should be configured for critical database parameter group events\n\nElastic Beanstalk environments should have enhanced health reporting enabled\n\nAPI Gateway REST API stages should have AWS X-Ray tracing enabled\n\nAPI Gateway REST and WebSocket API execution logging should be enabled\n\nCloudTrail trails should be integrated with Amazon CloudWatch Logs\n\nAmazon Redshift clusters should have audit logging enabled\n\nDetails:\nRetain security event logs from services and applications. This is a fundamental principle of security for audit, investigations, and operational use cases, and a common security requirement driven by governance, risk, and compliance (GRC) standards, policies, and procedures.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q04choice2",
+                            "title": "P1 Analyze logs, findings, and metrics centrally",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nGuardDuty should be enabled\n\nDetails:\nSecurity operations teams rely on the collection of logs and the use of search tools to discover potential events of interest, which might indicate unauthorized activity or unintentional change. However, simply analyzing collected data and manually processing information is insufficient to keep up with the volume of information flowing from complex architectures. Analysis and reporting alone don't facilitate the assignment of the right resources to work an event in a timely fashion."
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_1_q04choice1 && pillar_1_q04choice2 ",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_1_q05",
+                    "title": "SEC 5 How do you protect your network resources?",
+                    "description": "Any workload that has some form of network connectivity, whether it's the internet or a private network, requires multiple layers of defense to help protect from external and internal network-based threats.",
+                    "choices": [
+                        {
+                            "id": "pillar_1_q05choice1",
+                            "title": "P1 Create network layers",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nThe VPC default security group should not allow inbound and outbound traffic Hs4Ma3G118 \n\nDetails:\nGroup components that share sensitivity requirements into layers to minimize the potential scope of impact of unauthorized access. For example, a database cluster in a virtual private cloud (VPC) with no need for internet access should be placed in subnets with no route to or from the internet. Traffic should only flow from the adjacent next least sensitive resource. Consider a web application sitting behind a load balancer. Your database should not be accessible directly from the load balancer. Only the business logic or web server should have direct access to your database.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q05choice2",
+                            "title": "P0 Control traffic at all layers - restrict public subnet access.",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nVPC flow logging should be enabled in all VPCs\n\nAmazon Elasticsearch Service domains should be in a VPC\n\nECS services should not have public IP addresses assigned to them automatically Hs4Ma3G146\n\nSecurity Groups - Unrestricted Access 1iG5NDGVre\n\nSecurity Groups - Specific Ports Unrestricted HCP4007jGY\n\nAmazon RDS Security Group Access Risk\n\nELB Security Groups xSqX82fQu\n\nAmazon RDS Security Group Access Risk nNauJisYIT\n\nClassic Load Balancers with HTTPS/SSL listeners should use a predefined security policy that has strong configuration Hs4Ma3G205\n\nCloudFront distributions should have WAF enabled Hs4Ma3G201\n\nIAM customer managed policies that you create should not allow wildcard actions for services Hs4Ma3G185\n\nSecurity groups should only allow unrestricted incoming traffic for authorized ports Hs4Ma3G178\n\nRDS instances should be deployed in a VPC Hs4Ma3G165 \n\nLambda function policies should prohibit public access Hs4Ma3G131\n\nAPI Gateway should be associated with a WAF Web ACL Hs4Ma3G125\n\nEC2 instances should not have a public IPv4 address Hs4Ma3G123\n\nVPC flow logging should be enabled in all VPCs Hs4Ma3G122\n\nSecrets Manager secrets should be rotated within a specified number of days Hs4Ma3G112\n\nRedshift clusters should use enhanced VPC routing Hs4Ma3G104\n\nDetails:\nWhen architecting your network topology, you should examine the connectivity requirements of each component. For example, if a component requires internet accessibility (inbound and outbound), connectivity to VPCs, edge services, and external data centers.\n\nYou should restrict access to port by default, only unrestricted access (0.0.0.0/0) to 80, 25, 443, 465 or specific application ports on need basis.  \n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q05choice3",
+                            "title": "P1 Control traffic at all layers - restrict private subnet access.",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nSecurity Groups - Specific Ports Unrestricted HCP4007jGY\n\nDetails:\nWhen architecting your network topology, you should examine the connectivity requirements of each component. For example, if a component requires internet accessibility (inbound and outbound), connectivity to VPCs, edge services, and external data centers.\n\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_1_q05choice1 && pillar_1_q05choice2 && pillar_1_q05choice3 ",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "(!pillar_1_q05choice2)",
+                            "risk": "HIGH_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_1_q06",
+                    "title": "SEC 6 How do you protect your compute resources?",
+                    "description": "Compute resources in your workload require multiple layers of defense to help protect from external and internal threats. Compute resources include EC2 instances, containers, AWS Lambda functions, database services, IoT devices, and more.",
+                    "choices": [
+                        {
+                            "id": "pillar_1_q06choice1",
+                            "title": "P2 Perform vulnerability management",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAmazon EC2 instances with Microsoft SQL Server end of support Qsdfp3A4L3\n\nDetails:\nFrequently scan and patch for vulnerabilities in your code, dependencies, and in your infrastructure to help protect against new threats.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q06choice2",
+                            "title": "P1 Reduce attack surface",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nSecurity Groups - Unrestricted Access 1iG5NDGVre\n\nSecurity Groups - Specific Ports Unrestricted HCP4007jGY\n\nAmazon RDS Security Group Access Risk\n\nELB Security Groups\n\nEC2 instances should not use multiple ENIs Hs4Ma3G208\n\nSecurity groups should not allow unrestricted access to ports with high risk Hs4Ma3G204 \n\nApplication load balancer should be configured to drop http headers Hs4Ma3G183\n\nDatabase Migration Service replication instances should not be public Hs4Ma3G132\n\nLambda functions should use supported runtimes Hs4Ma3G130\n\nAWS Lambda Functions Using Deprecated Runtimes L4dfs2Q4C5\n\nAmazon Redshift clusters should prohibit public access Hs4Ma3G103\n\nAmazon Elastic MapReduce cluster master nodes should not have public IP addresses Hs4Ma3G101\n\nAmazon SageMaker notebook instances should not have direct internet access Hs4Ma3G100\n\nDetails:\nReduce your exposure to unintended access by hardening operating systems and minimizing the components, libraries, and externally consumable services in use. Start by reducing unused components, whether they are operating system packages or applications, for Amazon Elastic Compute Cloud (Amazon EC2)-based workloads, or external software modules in your code, for all workloads. You can find many hardening and security configuration guides for common operating systems and server software. For example, you can start with the Center for Internet Security and iterate.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q06choice3",
+                            "title": "P2 Implement managed services",
+                            "helpfulResource": {
+                                "displayText": "-"
+                            },
+                            "improvementPlan": {
+                                "displayText": "EC2 instances managed by Systems Manager should have an association compliance status of COMPLIANT Hs4Ma3G157\n\nEC2 instances managed by Systems Manager should have a patch compliance status of COMPLIANT after a patch installation Hs4Ma3G156\n\nElastic Beanstalk managed platform updates should be enabled Hs4Ma3G149"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q06choice4",
+                            "title": "P1 Automate compute protection",
+                            "helpfulResource": {
+                                "displayText": "-"
+                            },
+                            "improvementPlan": {
+                                "displayText": "Amazon EC2 should be configured to use VPC endpoints that are created for the Amazon EC2 service Hs4Ma3G206\n\nAWS Config should be enabled Hs4Ma3G196\n\nAuto scaling groups associated with a load balancer should use load balancer health checks Hs4Ma3G177\n\nRDS DB instances should be configured to copy tags to snapshots Hs4Ma3G164\n\nRDS DB clusters should be configured to copy tags to snapshots Hs4Ma3G163\n\nRDS automatic minor version upgrades should be enabled Hs4Ma3G162\n\nAmazon RDS engine minor version upgrade is required c1qf5bt003"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_1_q06choice2 && pillar_1_q06choice4 ",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_1_q08",
+                    "title": "SEC 8 How do you protect your data at rest?",
+                    "description": "Protect your data at rest by implementing multiple controls, to reduce the risk of unauthorized access or mishandling.",
+                    "choices": [
+                        {
+                            "id": "pillar_1_q08choice1",
+                            "title": "P2 Implement secure key management",
+                            "helpfulResource": {
+                                "displayText": "Secure key management includes the storage, rotation, access control, and monitoring of key material required to secure data at rest for your workload.\n\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q08choice2",
+                            "title": "P1 Enforce encryption at rest according to the organization encryption requirement",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAPI Gateway REST API cache data should be encrypted at rest Hs4Ma3G202 \n\nAmazon Elasticsearch Service domains should have encryption at-rest enabled Hs4Ma3G197 \n\nRDS DB instances should have encryption at-rest enabled Hs4Ma3G193 \n\nRDS cluster snapshots and database snapshots should be encrypted at rest Hs4Ma3G191 \n\nS3 buckets should have server-side encryption enabled Hs4Ma3G167 \n\nElastic File System should be configured to encrypt file data at-rest using AWS KMS Hs4Ma3G159 \n\nAmazon SQS queues should be encrypted at rest Hs4Ma3G136 \n\nDynamoDB Accelerator (DAX) clusters should be encrypted at rest Hs4Ma3G126 \n\nAttached EBS volumes should be encrypted at-rest Hs4Ma3G117 \n\nCloudTrail should have encryption at-rest enabled Hs4Ma3G110 \n\nDetails:\nEnforce your defined encryption requirements based on your organization s policies, regulatory obligations and standards to help meet organizational, legal, and compliance requirements. Encryption maintains the confidentiality of sensitive data in the event of unauthorized access or accidental disclosure.\n\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q08choice3",
+                            "title": "P1 Automate data at rest protection",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nCloudFront distributions should have a default root object configured Hs4Ma3G200 \n\nRDS DB instances should have deletion protection enabled Hs4Ma3G198 \n\nRDS clusters should have deletion protection enabled Hs4Ma3G190 \n\nDetails:\nUse automated tools to validate and enforce data at rest controls continuously, for example, verify that there are only encrypted storage resources. You can automate validation that all EBS volumes are encrypted using AWS Config Rules. AWS Security Hub can also verify several different controls through automated checks against security standards. Additionally, your AWS Config Rules can automatically remediate noncompliant resources.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q08choice4",
+                            "title": "P1 Enforce access control",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAmazon RDS Public Snapshots rSs93HQwa1 \n\nAmazon EBS Public Snapshots ePs02jT06w \n\nAmazon S3 Bucket Permissions Pfx0RwqBli \n\nSSM documents should not be public Hs4Ma3G158 \n\nEBS snapshots should not be public, determined by the ability to be restorable by anyone Hs4Ma3G116 \n\nEC2 instances should use Instance Metadata Service Version 2 (IMDSv2) Hs4Ma3G124\n\nDetails:\nTo help protect your data at rest, enforce access control using mechanisms, such as isolation and versioning, and apply the principle of least privilege. Prevent the granting of public access to your data.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_1_q08choice1 && pillar_1_q08choice2 && pillar_1_q08choice3 && pillar_1_q08choice4  ",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_1_q09",
+                    "title": "SEC 9 How do you protect your data in transit?",
+                    "description": "Protect your data in transit by implementing multiple controls to reduce the risk of unauthorized access or loss.",
+                    "choices": [
+                        {
+                            "id": "pillar_1_q09choice1",
+                            "title": "P1 Implement secure key and certificate management",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nELB Listener Security a2sEc6ILx \n\nCloudFront SSL Certificate on the Origin Server N430c450f2 \n\nDetails:\nTransport Layer Security (TLS) certificates are used to secure network communications and establish the identity of websites, resources, and workloads over the internet, as well as private networks.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q09choice2",
+                            "title": "P1 Enforce encryption in transit according to the organization encryption requirement",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAPI Gateway REST API stages should be configured to use SSL certificates for backend authentication\n\nConnections to Amazon Elasticsearch Service domains should be encrypted using TLS 1.2 Hs4Ma3G187 \n\nClassic Load Balancer listeners should be configured with HTTPS or TLS termination Hs4Ma3G182 \n\nClassic Load Balancers with SSL/HTTPS listeners should use a certificate provided by AWS Certificate Manager Hs4Ma3G181 \n\nS3 buckets should require requests to use Secure Socket Layer Hs4Ma3G168 \n\nElasticsearch domains should encrypt data sent between nodes Hs4Ma3G150 \n\nCloudFront distributions should require encryption in transit Hs4Ma3G107 \n\nConnections to Amazon Redshift clusters should be encrypted in transit Hs4Ma3G102 \n\nELB Listener Security a2sEc6ILx\n\nDetails:\nEnforce your defined encryption requirements based on your organization s policies, regulatory obligations and standards to help meet organizational, legal, and compliance requirements. Only use protocols with encryption when transmitting sensitive data outside of your virtual private cloud (VPC). Encryption helps maintain data confidentiality even when the data transits untrusted networks.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_1_q09choice1 && pillar_1_q09choice2 ",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_1_q10",
+                    "title": "SEC 10 How do you anticipate, respond to, and recover from incidents?",
+                    "description": "Preparation is critical to timely and effective investigation, response to, and recovery from security incidents to help minimize disruption to your organization.",
+                    "choices": [
+                        {
+                            "id": "pillar_1_q10choice1",
+                            "title": "P2 Identify key personnel and external resources",
+                            "helpfulResource": {
+                                "displayText": "Identify internal and external personnel, resources, and legal obligations that would help your organization respond to an incident."
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q10choice2",
+                            "title": "P2 Develop incident management plans",
+                            "helpfulResource": {
+                                "displayText": "The first document to develop for incident response is the incident response plan. The incident response plan is designed to be the foundation for your incident response program and strategy."
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_1_q10choice3",
+                            "title": "P2 Run simulations",
+                            "helpfulResource": {
+                                "displayText": "As organizations grow and evolve over time, so does the threat landscape, making it important to continually review your incident response capabilities. Running simulations (also known as game days) is one method that can be used to perform this assessment. Simulations use real-world security event scenarios designed to mimic a threat actor’s tactics, techniques, and procedures (TTPs) and allow an organization to exercise and evaluate their incident response capabilities by responding to these mock cyber events as they might occur in reality."
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "-"
+                            }
+                        }
+                    ],
+                    "riskRules": [
+
+                        {
+                            "condition": "default",
+                            "risk": "NO_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_1_q11",
+                    "title": "SEC 11 How do you incorporate and validate the security properties of applications throughout the deployment lifecycle?",
+                    "description": "Training people, testing using automation, understanding dependencies, and validating the  security properties of tools and applications help to reduce the likelihood of security issues  in production workloads.",
+                    "choices": [
+                        {
+                            "id": "pillar_1_q11choice1",
+                            "title": "P2 Perform regular penetration testing",
+                            "helpfulResource": {
+                                "displayText": "Perform regular penetration testing of your software. This mechanism helps identify potential software issues that cannot be detected by automated testing or a manual code review. It can also help you understand the efficacy of your detective controls. Penetration testing should try to determine if the software can be made to perform in unexpected ways, such as exposing data that should be protected, or granting broader permissions than expected."
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+
+                        {
+                            "condition": "default",
+                            "risk": "NO_RISK"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "pillar_id_2",
+            "name": "Performance",
+            "questions": [
+                {
+                    "id": "pillar_2_q02",
+                    "title": "PERF 2 How do you select and use compute resources in your workload?",
+                    "description": "The more efficient compute solution for a workload varies based on application design, usage patterns, and configuration settings. Architectures can use different compute solutions for various components and turn on different features to improve performance. Selecting the wrong compute solution for an architecture can lead to lower performance efficiency.",
+                    "choices": [
+                        {
+                            "id": "pillar_2_q02choice1",
+                            "title": "P2 Select the best compute options for your workload",
+                            "helpfulResource": {
+                                "displayText": "Selecting the most appropriate compute option for your workload allows you to improve performance, reduce unnecessary infrastructure costs, and lower the operational efforts required to maintain your workload.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_2_q02choice2",
+                            "title": "P2 Scale your compute resources dynamically",
+                            "helpfulResource": {
+                                "displayText": "Use the elasticity of the cloud to scale your compute resources up or down dynamically to match your needs and avoid over- or under-provisioning capacity for your workload.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_2_q02choice3",
+                            "title": "P1 Configure and right-size compute resources",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nLarge Number of EC2 Security Group Rules Applied to an Instance\n\nDetails:\nConfigure and right-size compute resources to match your workload's performance requirements and avoid under- or over-utilized resources.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+
+                        {
+                            "condition": "pillar_2_q02choice3 ",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_2_q03",
+                    "title": "PERF 3 How do you store, manage, and access data in your workload?",
+                    "description": "The more efficient storage solution for a system varies based on the kind of access operation (block, file, or object), patterns of access (random or sequential), required throughput, frequency of access (online, offline, archival), frequency of update (WORM, dynamic), and availability and durability constraints. Well-architected systems use multiple storage solutions and turn on different features to improve performance and use resources efficiently.",
+                    "choices": [
+                        {
+                            "id": "pillar_2_q03choice1",
+                            "title": "P2 Collect and record data store performance metrics",
+                            "helpfulResource": {
+                                "displayText": "Track and record relevant performance metrics for your data store to understand how your data management solutions are performing. These metrics can help you optimize your data store, verify that your workload requirements are met, and provide a clear overview on how the workload performs.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_2_q03choice2",
+                            "title": "P1 Evaluate available configuration options for data store",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \n\nOverutilized Amazon EBS Magnetic Volumes\n\nAmazon EBS Provisioned IOPS (SSD) Volume Attachment Configuration\n\nAmazon EC2 to EBS Throughput Optimization\n\nAmazon EFS Throughput Mode Optimization\n\nDetails:\nUnderstand and evaluate the various features and configuration options available for your data stores to optimize storage space and performance for your workload.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_2_q03choice3",
+                            "title": "P2 Implement strategies to improve query performance in data store",
+                            "helpfulResource": {
+                                "displayText": "Implement strategies to optimize data and improve data query to enable more scalability and efficient performance for your workload.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_2_q03choice2",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_2_q04",
+                    "title": "PERF 4 How do you select and configure networking resources in your workload?",
+                    "description": "This question includes guidance and best practices to design, configure, and operate efficient networking and content delivery solutions in the cloud.",
+                    "choices": [
+                        {
+                            "id": "pillar_2_q04choice1",
+                            "title": "P1 Understand how networking impacts performance",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAmazon Route 53 Alias Resource Record Sets\n\nDetails:\nEvaluate networking features in the cloud that may increase performance. Measure the impact of these features through testing, metrics, and analysis. For example, take advantage of network-level features that are available to reduce latency, network distance, or jitter.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_2_q04choice2",
+                            "title": "P2 Optimize network configuration based on metrics",
+                            "helpfulResource": {
+                                "displayText": "Use collected and analyzed data to make informed decisions about optimizing your network configuration.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_2_q04choice1 ",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_2_q05",
+                    "title": "PERF 5 What process do you use to support more performance efficiency for your workload?",
+                    "description": "When architecting workloads, there are principles and practices that you can adopt to help you better run efficient high-performing cloud workloads. To adopt a culture that fosters performance efficiency of cloud workloads, consider these key principles and practices.",
+                    "choices": [
+                        {
+                            "id": "pillar_2_q05choice1",
+                            "title": "P2 Use monitoring solutions to understand the areas where performance is most critical",
+                            "helpfulResource": {
+                                "displayText": "Understand and identify areas where increasing the performance of your workload will have a positive impact on efficiency or customer experience. For example, a website that has a large amount of customer interaction can benefit from using edge services to move content delivery closer to customers.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_2_q05choice2",
+                            "title": "P2 Load test your workload",
+                            "helpfulResource": {
+                                "displayText": "Load test your workload to verify it can handle production load and identify any performance bottleneck.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+
+                        {
+                            "condition": "default",
+                            "risk": "NO_RISK"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "pillar_id_3",
+            "name": "Reliability",
+            "questions": [
+                {
+                    "id": "pillar_3_q01",
+                    "title": "REL 1 How do you manage service quotas and constraints?",
+                    "description": "For cloud-based workload architectures, there are Service Quotas (which are also referred to as service limits). These quotas exist to prevent accidentally provisioning more resources than you need and to limit request rates on API operations so as to protect services from abuse. There are also resource constraints, for example, the rate that you can push bits down a fiber-optic cable, or the amount of storage on a physical disk.",
+                    "choices": [
+                        {
+                            "id": "pillar_3_q01choice1",
+                            "title": "P1 Monitor and manage quotas",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nService limits checks flagged as Yellow (80%), Red (100%) \n\nDetails:\nEvaluate your potential usage and increase your quotas appropriately, allowing for planned growth in usage."
+                            },
+                            "improvementPlan": {
+                                "displayText": "Service limits checks flagged as Yellow (80%), Red (100%)"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q01choice2",
+                            "title": "P1 Ensure that a sufficient gap exists between the current quotas and the maximum usage to accommodate failover",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nService limits checks flagged as Yellow (80%), Red (100%) \n\nDetails:\n\nWhen a resource fails or is inaccessible, that resource might still be counted against a quota until it's successfully terminated. Verify that your quotas cover the overlap of failed or inaccessible resources and their replacements. You should consider use cases like network failure, Availability Zone failure, or Regional failures when calculating this gap.\n\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "Service limits checks flagged as Yellow (80%), Red (100%)"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_3_q01choice1 && pillar_3_q01choice2 ",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_3_q03",
+                    "title": "REL 2 How do you plan your network topology?",
+                    "description": "Workloads often exist in multiple environments. These include multiple cloud environments (both publicly accessible and private) and possibly your existing data center infrastructure. Plans must include network considerations such as intra- and inter-system connectivity, public IP address management, private IP address management, and domain name resolution.",
+                    "choices": [
+                        {
+                            "id": "pillar_3_q03choice0",
+                            "title": "P0 Use highly available network connectivity for your workload public endpoints",
+                            "helpfulResource": {
+                                "displayText": "Building highly available network connectivity to public endpoints of your workloads can help you reduce downtime due to loss of connectivity and improve the availability and SLA of your workload. *To achieve this, use highly available DNS, content delivery networks (CDNs), API gateways, load balancing, or reverse proxies."
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q03choice1",
+                            "title": "P0 Provision redundant connectivity between private networks in the cloud ,  on-premises , cloud to cloud environments",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nVPN Tunnel Redundancy S45wrEXrLz \n\nAWS Direct Connect Location Redundancy 8M012Ph3U5 \n\nAWS Direct Connect Virtual Interface Redundancy 4g3Nt5M1Th \n\nAWS Direct Connect Connection Redundancy 0t121N1Ty3 \n\nDetails:\nUse multiple AWS Direct Connect connections or VPN tunnels between separately deployed private networks. Use multiple Direct Connect locations for high availability. If using multiple AWS Regions, ensure redundancy in at least two of them. You might want to evaluate AWS Marketplace appliances that terminate VPNs. If you use AWS Marketplace appliances, deploy redundant instances for high availability in different Availability Zones."
+                            },
+                            "improvementPlan": {
+                                "displayText": "VPN Tunnel Redundancy S45wrEXrLz \n\nAWS Direct Connect Location Redundancy 8M012Ph3U5 \n\nAWS Direct Connect Virtual Interface Redundancy 4g3Nt5M1Th \n\nAWS Direct Connect Connection Redundancy 0t121N1Ty3"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q03choice2",
+                            "title": "P2 Ensure IP subnet allocation accounts for expansion and availability",
+                            "helpfulResource": {
+                                "displayText": "Amazon VPC IP address ranges must be large enough to accommodate workload requirements, including factoring in future expansion and allocation of IP addresses to subnets across Availability Zones. This includes load balancers, EC2 instances, and container-based applications.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q03choice3",
+                            "title": "P2 Enforce non-overlapping private IPv4 address ranges in all private address spaces where they are connected",
+                            "helpfulResource": {
+                                "displayText": "Details:\nThe IP address ranges of each of your VPCs must not overlap when peered or connected via VPN. You must similarly avoid IP address conflicts between a VPC and on-premises environments or with other cloud providers that you use. You must also have a way to allocate private IP address ranges when needed.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_3_q03choice0 && pillar_3_q03choice1",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "HIGH_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_3_q08",
+                    "title": "REL 7 How do you design your workload to adapt to changes in demand?",
+                    "description": "A scalable workload provides elasticity to add or remove resources automatically so that they closely match the current demand at any given point in time.",
+                    "choices": [
+                        {
+                            "id": "pillar_3_q08choice1",
+                            "title": "P1 Use automation when obtaining or scaling resources",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAuto Scaling Group Resources 8CNsSllI5v\n\nDetails:\nWhen replacing impaired resources or scaling your workload, automate the process by using managed AWS services, such as Amazon S3 and AWS Auto Scaling. You can also use third-party tools and AWS SDKs to automate scaling.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "Auto Scaling Group Resources 8CNsSllI5v"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q08choice2",
+                            "title": "P1 Obtain resources upon detection of impairment to a workload",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAuto Scaling Group Health Check CLOG40CDO8\n\nDetails:\nScale resources reactively when necessary if availability is impacted, to restore workload availability.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "Auto Scaling Group Health Check CLOG40CDO8"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q08choice3",
+                            "title": "P2 Load test your workload",
+                            "helpfulResource": {
+                                "displayText": "Adopt a load testing methodology to measure if scaling activity meets workload requirements.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_3_q08choice1 && pillar_3_q08choice2",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_3_q09",
+                    "title": "REL 8 How do you implement change?",
+                    "description": "Controlled changes are necessary to deploy new functionality, and to verify that the workloads and the operating environment are running known software and can be patched or replaced in a predictable manner. If these changes are uncontrolled, then it makes it difficult to predict the effect of these changes, or to address issues that arise because of them.",
+                    "choices": [
+                        {
+                            "id": "pillar_3_q09choice1",
+                            "title": "P2 Use runbooks for standard activities such as deployment",
+                            "helpfulResource": {
+                                "displayText": "Runbooks are the predefined procedures to achieve specific outcomes. Use runbooks to perform standard activities, whether done manually or automatically. Examples include deploying a workload, patching a workload, or making DNS modifications.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "default",
+                            "risk": "NO_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_3_q10",
+                    "title": "REL 9 How do you back up data?",
+                    "description": "Back up data, applications, and configuration to meet your requirements for recovery time objectives (RTO) and recovery point objectives (RPO).",
+                    "choices": [
+                        {
+                            "id": "pillar_3_q10choice1",
+                            "title": "P0 Identify and back up all data that needs to be backed up, or reproduce the data from sources",
+                            "helpfulResource": {
+                                "displayText": "Understand and use the backup capabilities of the data services and resources used by the workload. Most services provide capabilities to back up workload data.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q10choice2",
+                            "title": "P0 Secure and encrypt backups",
+                            "helpfulResource": {
+                                "displayText": "Control and detect access to backups using authentication and authorization. Prevent and detect if data integrity of backups is compromised using encryption.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q10choice3",
+                            "title": "P0 Perform data backup automatically",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAmazon RDS Backups opQPADkZvH \n\nAmazon S3 Bucket Versioning R365s2Qddf \n\nAmazon EBS Snapshots H7IgTzjT\n\nDetails:\nConfigure backups to be taken automatically based on a periodic schedule informed by the Recovery Point Objective (RPO), or by changes in the dataset. Critical datasets with low data loss requirements need to be backed up automatically on a frequent basis, whereas less critical data where some loss is acceptable can be backed up less frequently."
+                            },
+                            "improvementPlan": {
+                                "displayText": "Amazon RDS Backups opQPADkZvH \n\nAmazon S3 Bucket Versioning R365s2Qddf \n\nAmazon EBS Snapshots H7IgTzjT"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q10choice4",
+                            "title": "P1 Perform periodic recovery of the data to verify backup integrity and processes",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAmazon RDS Backups\n\nDetails:\nValidate that your backup process implementation meets your Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) by performing a recovery test.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "Amazon RDS Backups"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_3_q10choice1 && pillar_3_q10choice2 && pillar_3_q10choice3 && pillar_3_q10choice4 ",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "(!pillar_3_q10choice1) || (!pillar_3_q10choice2) || (!pillar_3_q10choice3)",
+                            "risk": "HIGH_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_3_q11",
+                    "title": "REL 10 How do you use fault isolation to protect your workload?",
+                    "description": "Fault isolated boundaries limit the effect of a failure within a workload to a limited number of components. Components outside of the boundary are unaffected by the failure. Using multiple fault isolated boundaries, you can limit the impact on your workload.",
+                    "choices": [
+                        {
+                            "id": "pillar_3_q11choice1",
+                            "title": "P1 Deploy the workload to multiple locations",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nELB Cross-Zone Load Balancing xdeXZKIUy \n\nAmazon EC2 Availability Zone Balance wuy7G1zxql \n\nAmazon RDS Multi-AZ f2iK5R6Dep VPN Tunnel Redundancy S45wrEXrLz \n\nAWS Lambda VPC-enabled Functions without Multi-AZ Redundancy L4dfs2Q4C6\n\nDetails:\nDistribute workload data and resources across multiple Availability Zones or, where necessary, across AWS Regions. These locations can be as diverse as required.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "ELB Cross-Zone Load Balancing xdeXZKIUy \n\nAmazon EC2 Availability Zone Balance wuy7G1zxql \n\nAmazon RDS Multi-AZ f2iK5R6Dep VPN Tunnel Redundancy S45wrEXrLz \n\nAWS Lambda VPC-enabled Functions without Multi-AZ Redundancy L4dfs2Q4C6"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_3_q11choice1 ",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_3_q12",
+                    "title": "REL 11 How do you design your workload to withstand component failures?",
+                    "description": "Workloads with a requirement for high availability and low mean time to recovery (MTTR) must be architected for resiliency.",
+                    "choices": [
+                        {
+                            "id": "pillar_3_q12choice1",
+                            "title": "P1 Monitor all components of the workload to detect failures",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAmazon Route 53 Deleted Health Checks\n\nAmazon S3 Bucket Logging\n\nDetails:\nContinually monitor the health of your workload so that you and your automated systems are aware of failures or degradations as soon as they occur. Monitor for key performance indicators (KPIs) based on business value.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q12choice2",
+                            "title": "P2 Fail over to healthy resources",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAmazon Route 53 Failover Resource Record Sets b73EEdD790\n\nAmazon Comprehend Endpoint Access Risk Cm24dfsM13\n\nAmazon Route 53 High TTL Resource Record Sets C056F80cR3\n\nAmazon Route 53 Deleted Health Checks Cb877eB72b \n\nDetails:\nIf a resource failure occurs, healthy resources should continue to serve requests. For location impairments (such as Availability Zone or AWS Region), ensure that you have systems in place to fail over to healthy resources in unimpaired locations.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q12choice3",
+                            "title": "P2 Architect your product to meet availability targets and uptime service level agreements (SLAs)",
+                            "helpfulResource": {
+                                "displayText": "Architect your product to meet availability targets and uptime service level agreements (SLAs). If you publish or privately agree to availability targets or uptime SLAs, verify that your architecture and operational processes are designed to support them.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_3_q12choice1",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_3_q13",
+                    "title": "REL 12 How do you test reliability?",
+                    "description": "After you have designed your workload to be resilient to the stresses of production, testing is the only way to verify that it will operate as designed, and deliver the resiliency you expect.",
+                    "choices": [
+                        {
+                            "id": "pillar_3_q13choice1",
+                            "title": "P2 Use playbooks to investigate failures",
+                            "helpfulResource": {
+                                "displayText": "Enable consistent and prompt responses to failure scenarios that are not well understood, by documenting the investigation process in playbooks. Playbooks are the predefined steps performed to identify the factors contributing to a failure scenario. The results from any process step are used to determine the next steps to take until the issue is identified or escalated.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q13choice2",
+                            "title": "P2 Test functional requirements",
+                            "helpfulResource": {
+                                "displayText": "Use techniques such as unit tests and integration tests that validate required functionality.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "default",
+                            "risk": "NO_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_3_q14",
+                    "title": "REL 13 How do you plan for disaster recovery (DR)?",
+                    "description": "Having backups and redundant workload components in place is the start of your DR strategy. RTO and RPO are your objectives for restoration of your workload. Set these based on business needs. Implement a strategy to meet these objectives, considering locations and function of workload resources and data. The probability of disruption and cost of recovery are also key factors that help to inform the business value of providing disaster recovery for a workload.",
+                    "choices": [
+                        {
+                            "id": "pillar_3_q14choice1",
+                            "title": "P2 Define recovery objectives for downtime and data loss",
+                            "helpfulResource": {
+                                "displayText": "The workload has a recovery time objective (RTO) and recovery point objective (RPO).\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_3_q14choice2",
+                            "title": "P2 Test disaster recovery implementation to validate the implementation",
+                            "helpfulResource": {
+                                "displayText": "Regularly test failover to your recovery site to verify that it operates properly and that RTO and RPO are met.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "default",
+                            "risk": "NO_RISK"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": "pillar_id_4",
+            "name": "Cost optimization",
+            "questions": [
+                {
+                    "id": "pillar_4_q01",
+                    "title": "COST 0 How do you utilize the following optimizatation tactics?",
+                    "description": "Evaluate the suggestion in Cost Optimisation Hub time to time. Also evaluate the top suggestion listed here.",
+                    "choices": [
+                        {
+                            "id": "pillar_4_q01choice1",
+                            "title": "P2 Reiview the suggestion in Cost Optimization Hub",
+                            "helpfulResource": {
+                                "displayText": "-"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_4_q01choice2",
+                            "title": "P2 Adopts different compute option like  Graviton, AMD, if applicable",
+                            "helpfulResource": {
+                                "displayText": "-"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_4_q01choice3",
+                            "title": "P2 Adopts different compute purchase option like Reserve Instance, Saving Plan, Spot, if applicable",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nSavings Plan vZ2c2W1srf \n\nAmazon EC2 Reserved Instances Optimization cX3c2R1chu"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_4_q01choice4",
+                            "title": "P2 Adopts different managed service purchase option like Reserve Instance if applicable",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAmazon ElastiCache Reserved Node Optimization h3L1otH3re \n\nAmazon OpenSearch Service Reserved Instance Optimization 7ujm6yhn5t \n\nAmazon Redshift Reserved Node Optimization 1qw23er45t \n\nAmazon Relational Database Service (RDS) Reserved Instance Optimization 1qazXsw23e "
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_4_q01choice5",
+                            "title": "P2 Adopts different storage option e.g. EBS gp3, s3 storage classes Opensearch ultrawarm etc. if applicable",
+                            "helpfulResource": {
+                                "displayText": "-"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_4_q01choice6",
+                            "title": "P2 Adopts CloudFront to lower Data Transfer cost, or together CFRC",
+                            "helpfulResource": {
+                                "displayText": "-"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "pillar_4_q01choice7",
+                            "title": "P2 Adopt Static BGP for china region",
+                            "helpfulResource": {
+                                "displayText": "-"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "default",
+                            "risk": "NO_RISK"
+                        }
+                    ]
+                },
+                {
+                    "id": "pillar_4_q02",
+                    "title": "COST 4 How do you decommission resources?",
+                    "description": "Implement change control and resource management from project inception to end-of-life. This facilitates shutting down unused resources to reduce  waste.",
+                    "choices": [
+                        {
+                            "id": "pillar_4_q02choice1",
+                            "title": "P1 Track resources over their life time",
+                            "helpfulResource": {
+                                "displayText": "Trusted Advisor Checks: \nAmazon RDS Idle DB Instances Ti39halfu8\n\nLow Utilization Amazon EC2 Instances Qch7DwouX1\n\nUnderutilized Amazon EBS Volumes DAvU99Dc4C\n\nIdle Load Balancers hjLMh88uM8\n\nUnassociated Elastic IP Addresses Z4AUBRNSmz\n\nUnderutilized Amazon Redshift Clusters G31sQ1E9U\n\nAWS Lambda Functions with High Error Rates L4dfs2Q3C2\n\nAWS Lambda Functions with Excessive Timeouts L4dfs2Q3C3\n\nAmazon Comprehend Underutilized Endpoints Cm24dfsM12\n\nAmazon EC2 instances over-provisioned for Microsoft SQL Server Qsdfp3A4L1\n\nAmazon EC2 instances consolidation for Microsoft SQL Server Qsdfp3A4L2\n\nDetails:\nDefine and implement a method to track resources and their associations with systems over their lifetime. You can use tagging to identify the workload or function of the resource.\n"
+                            },
+                            "improvementPlan": {
+                                "displayText": "-"
+                            }
+                        },
+                        {
+                            "id": "option_no",
+                            "title": "None of these",
+                            "helpfulResource": {
+                                "displayText": "Choose this if your workload does not follow these best practices."
+                            }
+                        }
+                    ],
+                    "riskRules": [
+                        {
+                            "condition": "pillar_4_q02choice1",
+                            "risk": "NO_RISK"
+                        },
+                        {
+                            "condition": "default",
+                            "risk": "MEDIUM_RISK"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
