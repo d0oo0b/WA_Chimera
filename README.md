@@ -27,3 +27,4 @@ If you encounter any issues, please report them in the "Issues" section of this 
 The current supported Custom Lens is:
 https://gitlab.aws.dev/aws-gcr-sa/gcr-war-key-workload-custom-lens (March 1st version)
 
+When lens.json changes, it needs to be processed by the pjson.py program to generate a new output.csv file. Whether to automatically trigger the update of lens.json based on the updates of gcr-war-key-workload-custom-lens is still under consideration. If necessary, this feature will be supported in future versions.
