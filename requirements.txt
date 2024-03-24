@@ -1,3 +1,4 @@
 pandas
 openpyxl
 Pillow
+boto3
