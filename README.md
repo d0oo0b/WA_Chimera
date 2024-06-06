@@ -17,7 +17,7 @@ In the V2 version, a new feature has been added to update the NOTES of questions
 
 After setting up your AK/SK, you can click on the "Setting" option in this application to configure the Region, Workload, and Lens. Once you have successfully imported the exported XLSX files from the AWS Trusted Adviser service, you can perform the "Update Workload" operation.
 
-**Note:** In the Settings, there is an option to determine whether to overwrite or append to the existing notes when updating the workload. If you choose not to overwrite, the new notes will be appended to the existing ones. However, each note in the AWS WA Tool has a length limit, and appending may cause errors due to exceeding this limit. Error messages can be found in the `output.log` file.
+**Note:** [Deprecated, The relevant functionality has been commented out in WA.py.]~~In the Settings, there is an option to determine whether to overwrite or append to the existing notes when updating the workload. If you choose not to overwrite, the new notes will be appended to the existing ones. However, each note in the AWS WA Tool has a length limit, and appending may cause errors due to exceeding this limit. Error messages can be found in the `output.log` file.~~
 
 If you encounter any issues, please report them in the "Issues" section of this repository.
 
