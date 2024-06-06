@@ -1,5 +1,5 @@
 # WA_Chimera
-![Alt text](/Chimera.png)
+<img src="/Chimera.png" alt="WA Chimera" width="300">
 This program is designed to facilitate the process of reading exported XLSX files from the AWS Trusted Adviser service and registering the identified risks into a workload created through a specified Custom Lens. This helps identify and track high-risk P0 and P1 issues for improvement.
 
 ## Usage
