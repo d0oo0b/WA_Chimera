@@ -224,8 +224,11 @@ def show_settings_window():
     workload_dropdown.grid(row=1, column=1, padx=5, pady=5)
     lens_label.grid(row=2, column=0, padx=5, pady=5, sticky=tk.W)
     lens_dropdown.grid(row=2, column=1, padx=5, pady=5)
-    override_notes_label.grid(row=3, column=1, padx=5, pady=5, sticky=tk.W)
-    override_notes_checkbox.grid(row=3, column=0, padx=5, pady=5, sticky=tk.W)
+
+    # 以下被注释的代码功能是提供一个checkbox，提供一个选项，允许追加notes而不是覆盖notes，但因为wa 的notes有长度限制，当check项目问题较多时追加notes会引起报错，所以谨慎起见，注释掉，不提供追加的功能。
+    # override_notes_label.grid(row=3, column=1, padx=5, pady=5, sticky=tk.W)
+    # override_notes_checkbox.grid(row=3, column=0, padx=5, pady=5, sticky=tk.W)
+
     save_button.grid(row=4, columnspan=2, padx=5, pady=5)
 
 
@@ -264,16 +267,18 @@ def import_excel(filename):
         insert_query = "INSERT OR REPLACE INTO " + table_name + " (check_index, check_item, account_id, description, status) VALUES (?, ?, ?, ?, ?)"
         c.execute(insert_query, (sheet_name, check_item, account_id, description, status))
 
-        try:
-            df_detail = xlsx.parse(sheet_name, header=9)
-            df_detail.to_sql(sheet_name, conn, if_exists='replace', index=False)
-        except Exception as e:
-            # 打印异常信息
-            #logger.info("An exception occurred:")
-            logger.exception(f"Error: {e}")
-            # 打印异常的堆栈跟踪
-            #logger.info("Traceback:")
-            #traceback.print_exc()
+        df_check = xlsx.parse(sheet_name)
+        if df_check.shape[0] > 9:
+            try:
+                df_detail = xlsx.parse(sheet_name, header=9)
+                df_detail.to_sql(sheet_name, conn, if_exists='replace', index=False)
+            except Exception as e:
+                # 打印异常信息
+                #logger.info("An exception occurred:")
+                logger.exception(f"Error: {e}")
+                # 打印异常的堆栈跟踪
+                #logger.info("Traceback:")
+                #traceback.print_exc()
 
     # 创建Lens表
     table_name = 'lens'
@@ -414,7 +419,7 @@ def update_workload_with_TA():
     lens_alias = ''
     region_id = ''
     update_count = 0
-    overide_notes = False
+    overide_notes = True
     try:
         region_id = settings['region']
         workload_id = settings['workload'].split(hide_secret)[-1]
@@ -441,6 +446,9 @@ def update_workload_with_TA():
         try:
             logger.info('Updating:'+workload_id+','+lens_alias+','+question[1])
             notes = ''
+
+            # 以下被注释的代码功能是追加notes而不是覆盖notes，但因为wa 的notes有长度限制，当check项目问题较多时追加notes会引起报错，所以谨慎起见，注释掉，不提供追加的功能。
+            """
             if not overide_notes:
                 response = wellarchitected_client.get_answer(
                     WorkloadId=workload_id,
@@ -450,6 +458,7 @@ def update_workload_with_TA():
                 if 'Notes' in response['Answer']:
                     notes = response['Answer']['Notes']
 
+            """
             notes = notes + '\n--Updated by Chimera at ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '--\n' + question[5] + '\n' + question[6] + '\n-- --\n'
 
             response = wellarchitected_client.update_answer(
@@ -460,7 +469,7 @@ def update_workload_with_TA():
             )
             update_count += 1
             logger.info(f"Successfully updated answer for question: {question[1]}")
-            logger.info(f"Updating...{round(update_count/TA_results_size)}%")
+            logger.info(f"Updating...{round(100*update_count/TA_results_size)}%")
 
         except Exception as e:
             logger.info(f"Error at:{question[1]}")
