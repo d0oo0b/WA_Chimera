@@ -447,25 +447,21 @@ def update_workload_with_TA():
             logger.info('Updating:'+workload_id+','+lens_alias+','+question[1])
             notes = ''
 
-            # 以下被注释的代码功能是追加notes而不是覆盖notes，但因为wa 的notes有长度限制，当check项目问题较多时追加notes会引起报错，所以谨慎起见，注释掉，不提供追加的功能。
-            """
-            if not overide_notes:
-                response = wellarchitected_client.get_answer(
-                    WorkloadId=workload_id,
-                    LensAlias=lens_alias,
-                    QuestionId=question[1]
-                    )
-                if 'Notes' in response['Answer']:
-                    notes = response['Answer']['Notes']
+            response = wellarchitected_client.get_answer(
+                WorkloadId=workload_id,
+                LensAlias=lens_alias,
+                QuestionId=question[1]
+                )
+            if 'Notes' in response['Answer']:
+                notes = response['Answer']['Notes']
 
-            """
-            notes = notes + '\n--Updated by Chimera at ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '--\n' + question[5] + '\n' + question[6] + '\n-- --\n'
+            notes = '\n--Updated by Chimera at ' + datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S") + '--\n' + question[5] + '\n' + question[6] + '\n-- --\n' + notes
 
             response = wellarchitected_client.update_answer(
                 WorkloadId=workload_id,
                 LensAlias=lens_alias,
                 QuestionId=question[1],
-                Notes=notes
+                Notes=notes[:2000]
             )
             update_count += 1
             logger.info(f"Successfully updated answer for question: {question[1]}")
