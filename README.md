@@ -1,6 +1,19 @@
 # WA_Chimera
 <img src="/Chimera.png" alt="WA Chimera" width="300">
-This program is designed to facilitate the process of reading exported XLSX files from the AWS Trusted Adviser service and registering the identified risks into a workload created through a specified Custom Lens. This helps identify and track high-risk P0 and P1 issues for improvement.
+Here's a revised project introduction in English, with a simple and concise language:
+
+WA_Chimera is a program designed to streamline the process of analyzing AWS Trusted Adviser (TA) reports and registering identified risks into a Well-Architected (WA) workload created through a specified Custom Lens. It addresses two key challenges:
+
+1. For users without enterprise support, exporting TA reports from the console can be time-consuming and cumbersome due to the numerous spreadsheet pages, making it difficult to filter, search, and analyze issues. WA_Chimera analyzes the report content and consolidates P0 and P1 check items, along with detailed descriptions, into a TA-check.xlsx file.
+
+2. Even with enterprise support, reviewing issues from TAM-exported files, finding corresponding accounts, and updating the WA workload can be tedious. WA_Chimera can update the issues from the report directly into the WA workload notes, making it easier to update the WA check items based on the notes content.
+
+### Key features of WA_Chimera:
+
+1. Local deployment: Runs directly on a Mac, without the need for AWS resources or environments.
+2. Independent of TAM and Command Center tools: Utilizes customer-exported TA reports.
+3. Automatically generates a readable Excel file.
+4. Automatically updates WA workload notes (version 2).
 
 ## Usage
 
@@ -11,7 +24,7 @@ This program is designed to facilitate the process of reading exported XLSX file
 5. Upon successful execution, the analysis results will be output to the `TA-check.xlsx` file in the current directory.
 6. Refer to the `TA-check.xlsx` file and manually create/modify the workload in the WA Tool accordingly.
 
-### New Feature in V2: Update to AWS WA Tool
+### New Feature in Version 2: Update to AWS WA Tool
 
 In the V2 version, a new feature has been added to update the NOTES of questions in AWS WA Tool. Before using this feature, you need to set up your AWS Access Key and Secret Access Key. Please refer to the documentation for setting up your AK/SK (set them in your system environment variables, following the AWS CLI installation and setup documentation: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html).
 
