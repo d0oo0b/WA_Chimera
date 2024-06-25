@@ -8,7 +8,7 @@ WA_Chimera is a program designed to streamline the process of analyzing AWS Trus
 
 ### Key features of WA_Chimera:
 
-1. Local deployment: Runs directly on a Mac, without the need for AWS resources or environments.
+1. Local deployment: Runs directly on a Mac, easy and convenient
 2. Independent of TAM and Command Center tools: Utilizes customer-exported TA reports.
 3. Automatically generates a readable Excel file.
 4. Automatically updates WA workload notes (version 2).
