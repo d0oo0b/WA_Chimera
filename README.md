@@ -1,7 +1,5 @@
 # WA_Chimera
 <img src="/Chimera.png" alt="WA Chimera" width="300">
-Here's a revised project introduction in English, with a simple and concise language:
-
 WA_Chimera is a program designed to streamline the process of analyzing AWS Trusted Adviser (TA) reports and registering identified risks into a Well-Architected (WA) workload created through a specified Custom Lens. It addresses two key challenges:
 
 1. For users without enterprise support, exporting TA reports from the console can be time-consuming and cumbersome due to the numerous spreadsheet pages, making it difficult to filter, search, and analyze issues. WA_Chimera analyzes the report content and consolidates P0 and P1 check items, along with detailed descriptions, into a TA-check.xlsx file.
